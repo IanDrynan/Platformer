@@ -9,13 +9,16 @@ public class PlayerController : MonoBehaviour {
     public float jumpHeight;
     public float dashSpeed;
     public float dashTime;
+    public float gravityWall;
+    public float gravityMultiplier;
     public int actionSet;
-    public int actionCount;
+    private int actionCount;
     private bool isDashing;
     private Rigidbody rb;
     private float distGround;
     private float distWall;
-    private float speed;
+    private float mspeed;
+    private float dspeed;
     private float dashTimer;
 
     // Use this for initialization
@@ -24,7 +27,8 @@ public class PlayerController : MonoBehaviour {
         distGround = GetComponent<Collider>().bounds.extents.y;
         distWall = GetComponent<Collider>().bounds.extents.x;
         actionCount = actionSet;
-        speed = moveSpeed;
+        mspeed = moveSpeed;
+        dspeed = dashSpeed;
     }
 
 	void Update()
@@ -76,7 +80,7 @@ public class PlayerController : MonoBehaviour {
         }
         else if (rb.velocity.magnitude < .3f && !isGrounded() && !onWall()) //edge case where none of the raycasts can detect a ground or a wall and is stuck at a corner 
         {
-            Debug.Log("edge case");
+            //Debug.Log("edge case");
             rb.transform.Translate(0,.1f,0);
             rb.velocity = new Vector2(moveSpeed, 0);
         }
@@ -90,11 +94,11 @@ public class PlayerController : MonoBehaviour {
                 }
                 else
                 {
-                rb.AddForce(Physics.gravity * 1);
+                rb.AddForce(Physics.gravity * gravityWall);
                 }
             }
             else {
-                rb.AddForce(Physics.gravity * 2);
+                rb.AddForce(Physics.gravity * gravityMultiplier);
             }
         }
 	}
@@ -119,8 +123,8 @@ public class PlayerController : MonoBehaviour {
             Physics.Raycast(transform.position, Vector3.right, distWall + .01f) ||                                //ray from middle
             Physics.Raycast(transform.position + new Vector3(0, distGround - .1f, 0), Vector3.right, distWall + .01f)) //ray from top
         {
-            moveSpeed = -speed;
-            dashSpeed = -speed;
+            moveSpeed = -mspeed;
+            dashSpeed = -dspeed;
             //Debug.Log("wallright");
             return true;
         }
@@ -128,8 +132,8 @@ public class PlayerController : MonoBehaviour {
             Physics.Raycast(transform.position, -Vector3.right, distWall + .01f) ||                                //ray from middle
             Physics.Raycast(transform.position + new Vector3(0, distGround - .1f, 0), -Vector3.right, distWall + .01f)) //ray from top
         {
-            moveSpeed = speed;
-            dashSpeed = speed;
+            moveSpeed = mspeed;
+            dashSpeed = dspeed;
             //Debug.Log("wallleft"); 
             return true;
         }
