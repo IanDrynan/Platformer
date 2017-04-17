@@ -20,10 +20,12 @@ public class PlayerController : MonoBehaviour {
     private float mspeed;
     private float dspeed;
     private float dashTimer;
+    //private Animator cubeAnim;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
+        //cubeAnim = transform.FindChild("Cube").GetComponent<Animator>();
         distGround = GetComponent<Collider>().bounds.extents.y;
         distWall = GetComponent<Collider>().bounds.extents.x;
         actionCount = actionSet;
@@ -44,7 +46,8 @@ public class PlayerController : MonoBehaviour {
                     isDashing = false;
                     dashTimer = dashTime + 1f;
                     rb.velocity = new Vector2(moveSpeed, 0);
-                    rb.AddForce(new Vector2(0, jumpHeight), ForceMode.Impulse);                    
+                    rb.AddForce(new Vector2(0, jumpHeight), ForceMode.Impulse);
+                    //cubeAnim.Play("Jump");
                 }
                 else if (Input.mousePosition.x < (Screen.width * .5) && !isDashing) //dash
                 {

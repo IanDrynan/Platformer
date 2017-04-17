@@ -82,6 +82,7 @@
     <Compile Include="Assets\2DLightAsset\Scripts\Helpers\interface_touch2.cs" />
     <Compile Include="Assets\2DLightAsset\Scripts\rotate.cs" />
     <Compile Include="Assets\MyPlatformer\Scripts\GameManager.cs" />
+    <Compile Include="Assets\MyPlatformer\Scripts\Goal.cs" />
     <Compile Include="Assets\MyPlatformer\Scripts\LevelSelect.cs" />
     <Compile Include="Assets\MyPlatformer\Scripts\PlayerController.cs" />
   </ItemGroup>
