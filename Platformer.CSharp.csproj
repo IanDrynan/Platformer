@@ -75,21 +75,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\2DLightAsset\Examples\RigidBodyInterpolationSolution\FollowLight2d.cs" />
-    <Compile Include="Assets\2DLightAsset\Scripts\2DLight\DynamicLight.cs" />
-    <Compile Include="Assets\2DLightAsset\Scripts\Helpers\TablaSenoCoseno.cs" />
-    <Compile Include="Assets\2DLightAsset\Scripts\Helpers\interface_touch.cs" />
-    <Compile Include="Assets\2DLightAsset\Scripts\Helpers\interface_touch2.cs" />
-    <Compile Include="Assets\2DLightAsset\Scripts\rotate.cs" />
     <Compile Include="Assets\MyPlatformer\Scripts\GameManager.cs" />
     <Compile Include="Assets\MyPlatformer\Scripts\Goal.cs" />
-    <Compile Include="Assets\MyPlatformer\Scripts\LevelSelect.cs" />
     <Compile Include="Assets\MyPlatformer\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\MyPlatformer\Scripts\UIHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\2DLightAsset\Shaders\Gradient-NoTexture-Radial-SingleColor-ToTransparent-RegularUV-AlphaBlend.shader" />
-    <None Include="Assets\2DLightAsset\Shaders\Gradient-ZFighting.shader" />
-    <None Include="Assets\2DLightAsset\Shaders\NoTexture.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />

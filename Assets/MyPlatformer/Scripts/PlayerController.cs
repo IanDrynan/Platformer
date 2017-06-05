@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour {
 
@@ -35,29 +36,35 @@ public class PlayerController : MonoBehaviour {
 
 	void Update()
     {
-        if (Input.GetMouseButtonDown(0)) //if screen is touched. 
+        if (EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null)
         {
-            if (actionCount > 0) //Double jump/dash counter
-            {
-                
-                if (Input.mousePosition.x > (Screen.width * .5)) //jump
-                {
-                    actionCount -= 1;
-                    isDashing = false;
-                    dashTimer = dashTime + 1f;
-                    rb.velocity = new Vector2(moveSpeed, 0);
-                    rb.AddForce(new Vector2(0, jumpHeight), ForceMode.Impulse);
-                    //cubeAnim.Play("Jump");
-                }
-                else if (Input.mousePosition.x < (Screen.width * .5) && !isDashing) //dash
-                {
-                    actionCount -= 1;
-                    isDashing = true;
-                    dashTimer = 0f;
-                    StartCoroutine(dash(dashSpeed, dashTime));                    
-                }
-            }
 
+        }
+        else {
+            if (Input.GetMouseButtonDown(0)) //if screen is touched. 
+            {
+                if (actionCount > 0) //Double jump/dash counter
+                {
+
+                    if (Input.mousePosition.x > (Screen.width * .5)) //jump
+                    {
+                        actionCount -= 1;
+                        isDashing = false;
+                        dashTimer = dashTime + 1f;
+                        rb.velocity = new Vector2(moveSpeed, 0);
+                        rb.AddForce(new Vector2(0, jumpHeight), ForceMode.Impulse);
+                        //cubeAnim.Play("Jump");
+                    }
+                    else if (Input.mousePosition.x < (Screen.width * .5) && !isDashing) //dash
+                    {
+                        actionCount -= 1;
+                        isDashing = true;
+                        dashTimer = 0f;
+                        StartCoroutine(dash(dashSpeed, dashTime));
+                    }
+                }
+
+            }
         }
     }
 
